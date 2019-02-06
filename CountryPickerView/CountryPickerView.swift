@@ -24,7 +24,7 @@ public struct Country {
     }
     
    internal init(name: String, code: String, phoneCode: String) {
-        self.name = name
+        self.name = Locale.current.localizedString(forRegionCode: code) ?? name
         self.code = code
         self.phoneCode = phoneCode
     }
