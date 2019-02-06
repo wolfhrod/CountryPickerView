@@ -226,11 +226,11 @@ extension CountryPickerViewController: UISearchResultsUpdating {
             if showOnlyPreferredSection && hasPreferredSection,
                 let array = countries[dataSource.preferredCountriesSectionTitle!] {
                 indexArray = array
-            } else if let array = countries[String(text[text.startIndex])] {
-                indexArray = array
+            } else {
+                indexArray = Array(Array(countries.values).joined())
             }
 
-            searchResults.append(contentsOf: indexArray.filter({ $0.name.lowercased().hasPrefix(text.lowercased()) }))
+            searchResults.append(contentsOf: indexArray.filter({ $0.name.lowercased().contains(text.lowercased()) }))
         }
         tableView.reloadData()
     }
